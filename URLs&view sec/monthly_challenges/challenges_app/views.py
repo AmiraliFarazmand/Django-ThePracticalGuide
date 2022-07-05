@@ -2,6 +2,7 @@ import re
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.http import HttpResponse , HttpResponseNotFound , HttpResponseRedirect
+from django.urls import reverse
 # Create your views here.
 views_dict ={
     'op1': 'op1 called !!',
@@ -11,7 +12,9 @@ views_dict ={
 }
 def allops_numbers(request , op):
     response_ls= list(views_dict.keys())
-    return HttpResponseRedirect('/challenges_app/'+response_ls[op])
+    redirect_elm =response_ls[op-1]
+    redirect_path = reverse('reverse_challange' ,args=[redirect_elm])
+    return HttpResponseRedirect(redirect_path)
 
 def allops (request , op): 
     if op in views_dict.keys():
