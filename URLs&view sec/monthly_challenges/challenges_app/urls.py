@@ -2,5 +2,6 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-path('<op>' , views.allops)    
+path('<int:op>' , views.allops_numbers),
+path('<str:op>' , views.allops),
 ]
