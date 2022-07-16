@@ -18,6 +18,6 @@ def allops_numbers(request , op):
 
 def allops (request , op): 
     if op in views_dict.keys():
-        return HttpResponse(f'{views_dict[op]}  was called!!!')
+        return HttpResponse(f'<h1>{views_dict[op]}  was called!!!</h1>')
     else:
-        return HttpResponseNotFound(f'{op} was not found in urls!!!')
+        return HttpResponseNotFound(f'<h3>{op} was not found in urls!!!</h3>')
