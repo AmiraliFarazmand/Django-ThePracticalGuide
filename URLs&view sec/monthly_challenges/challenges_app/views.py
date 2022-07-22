@@ -5,10 +5,10 @@ from django.http import HttpResponse , HttpResponseNotFound , HttpResponseRedire
 from django.urls import reverse
 # Create your views here.
 views_dict ={
-    'op1': 'op1 called !!',
-    'op2': 'op2 called !!',
-    'op3': 'op3 called !!',
-    'op4': 'op4 called !!'
+    'op1': 'op1 called ! ! :))))))))))',
+    'op2': 'op2 called @@@@@@@@@',
+    'op3': 'op3 called $$$$$$$$',
+    'op4': 'op4 called !!!!!!!!!!!'
 }
 def allops_numbers(request , op):
     response_ls= list(views_dict.keys())
@@ -21,3 +21,13 @@ def allops (request , op):
         return HttpResponse(f'<h1>{views_dict[op]}  was called!!!</h1>')
     else:
         return HttpResponseNotFound(f'<h3>{op} was not found in urls!!!</h3>')
+
+def index_func(request ):
+    keys_ls  = list(views_dict.keys())
+    res_str = ''
+    for key in keys_ls:
+        op_path = reverse('reverse_challange',args=[key])
+        pth = f"<li><a href=\"{op_path}\">{key} </a></li>>"
+        res_str+=pth
+    response= f'<ul>{res_str}</ul>'
+    return HttpResponse(response)
