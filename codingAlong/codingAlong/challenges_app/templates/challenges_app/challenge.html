@@ -1,17 +1,18 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>title for {{op_key}}</title>
-  </head>
+{% extends 'base.HTML' %}
 
-  <body>
-    <h1>{{op_key}}</h1>
-    {% if op_value is not None %} 
-      <h3>{{op_value | title}}----------is the output!!</h3>
-    {% else %}
-      <h3> this is a None as an op <h3>
-    {% endif %}
+{% block  header_block%}
+title for {{op_key}}
+{% endblock header_block  %}
 
-    <p>loem. :\\\\\\\\\\</p>
-  </body>
-</html>
+
+{% block content %}
+<h1>{{op_key}}</h1>
+{% if op_key is not None %} 
+  <h3>{{op_value | title}}----------is the output!!</h3>
+{% else %}
+  <h3> this is a None as an op <h3>
+{% endif %}
+  <p>loem. :\\\\\\\\\\</p>
+  <h4>worked with base template</h4>
+{% endblock  %}
+  
