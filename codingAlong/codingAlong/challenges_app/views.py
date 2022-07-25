@@ -27,7 +27,7 @@ def allops (request , op):
         challenge = views_dict[op]
         # response_data = render_to_string('challenges_app/challenge.html')
         # return HttpResponse(response_data)
-        response_data = render(request ,'challenges_app/challenge.html')
+        response_data = render(request ,'challenges_app/challenge.html' , {'op_key' : op , 'op_value': challenge})
         return response_data
     except:
         return HttpResponseNotFound(f'<h3>{op} was not found in urls!!!(we\'re in allops function)</h3>')
