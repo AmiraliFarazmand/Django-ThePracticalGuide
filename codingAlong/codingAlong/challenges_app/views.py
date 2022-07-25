@@ -11,7 +11,9 @@ views_dict ={
     'op1': 'op1 called ! ! :))))))))))',
     'op2': 'op2 called @@@@@@@@@',
     'op3': 'op3 called $$$$$$$$',
-    'op4': 'op4 called !!!!!!!!!!!'
+    'op4': 'op4 called !!!!!!!!!!!',
+    'op5' : None,
+    'op6': ' op6 is some different op',
 }
 def allops_numbers(request , op):
     try:
@@ -34,10 +36,10 @@ def allops (request , op):
 
 def index_func(request ):
     keys_ls  = list(views_dict.keys())
-    res_str = ''
-    for key in keys_ls:
-        op_path = reverse('reverse_challange',args=[key])
-        pth = f"<li><a href=\"{op_path}\">{key} </a></li>"
-        res_str+=pth
-    response= f'<ul>{res_str}</ul>'
-    return HttpResponse(response)
+    # res_str = ''
+    # for key in keys_ls:
+    #     op_path = reverse('reverse_challange',args=[key])
+    #     pth = f"<li><a href=\"{op_path}\">{key} </a></li>"
+    #     res_str+=pth
+    # response= f'<ul>{res_str}</ul>'
+    return render(request ,'challenges_app/index.html', {'op_list': keys_ls})
