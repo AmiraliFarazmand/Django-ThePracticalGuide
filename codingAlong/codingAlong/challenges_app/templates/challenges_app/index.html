@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>All Ops</title>
+  </head>
+
+  <body>
+    <ul>
+      {%for op in op_list%}
+      <li><a href = {% url 'reverse_challange' op=op %}>{{op |title }} </a></li>
+      {% endfor %}
+    </ul>
+  </body>
+</html>
