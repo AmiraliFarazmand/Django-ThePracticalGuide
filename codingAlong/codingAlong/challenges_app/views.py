@@ -1,4 +1,5 @@
 from doctest import REPORT_CDIFF
+import re
 from urllib import response
 from django.http import HttpResponse
 from django.shortcuts import render
@@ -24,8 +25,10 @@ def allops_numbers(request , op):
 def allops (request , op): 
     try:
         challenge = views_dict[op]
-        response_data = render_to_string('challenges_app/challenge.html')
-        return HttpResponse(response_data)
+        # response_data = render_to_string('challenges_app/challenge.html')
+        # return HttpResponse(response_data)
+        response_data = render(request ,'challenges_app/challenge.html')
+        return response_data
     except:
         return HttpResponseNotFound(f'<h3>{op} was not found in urls!!!(we\'re in allops function)</h3>')
 
