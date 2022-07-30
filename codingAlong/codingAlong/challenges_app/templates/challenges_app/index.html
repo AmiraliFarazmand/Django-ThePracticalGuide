@@ -3,6 +3,7 @@
 {% block header_block %}All Ops List{% endblock  %}
 
 {% block content %}
+{% include "./includes/header.html" with active="index"%}
   <ul>
     {%for op in op_list%}
     <li><a href = {% url 'reverse_challange' op=op %}>{{op |title }} </a></li>

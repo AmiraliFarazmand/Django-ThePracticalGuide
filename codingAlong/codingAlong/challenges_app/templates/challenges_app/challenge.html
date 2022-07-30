@@ -6,6 +6,7 @@ title for {{op_key}}
 
 
 {% block content %}
+{% include "./includes/header.html" with active="challenge" %}
 <h1>{{op_key}}</h1>
 {% if op_key is not None %} 
   <h3>{{op_value | title}}----------is the output!!</h3>
