@@ -3,7 +3,7 @@ import re
 from urllib import response
 from django.http import HttpResponse
 from django.shortcuts import render
-from django.http import HttpResponse , HttpResponseNotFound , HttpResponseRedirect
+from django.http import HttpResponse , HttpResponseNotFound , HttpResponseRedirect , Http404
 from django.urls import reverse
 from django.template.loader import render_to_string
 # Create your views here.
@@ -32,8 +32,13 @@ def allops (request , op):
         response_data = render(request ,'challenges_app/challenge.html' , {'op_key' : op , 'op_value': challenge})
         return response_data
     except:
-        return HttpResponseNotFound(f'<h3>{op} was not found in urls!!!(we\'re in allops function)</h3>')
-
+        # return HttpResponseNotFound(f'<h3>{op} was not found in urls!!!(we\'re in allops function)</h3>')
+        
+        # response_data = render_to_string("404.html")
+        # return HttpResponseNotFound(response_data)   
+        
+        raise Http404()
+        
 def index_func(request ):
     keys_ls  = list(views_dict.keys())
     # res_str = ''
