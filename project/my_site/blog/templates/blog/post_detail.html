@@ -17,18 +17,13 @@ The Post
 {% block content %}
 <section id="summary"> 
 <article>
-    <img src="{% static 'blog/images/mountains.jpg' %}" alt="mountains">
-    <address>By FERZ</address>
-    <div>last upated on <time>July 17th</time></div>
+    <img src="{% static 'blog/images/'|add:post.image %}" alt="{{post.titile}}">
+    <address>By {{post.author}}</address>
+    <div>last upated on <time>{{post.date|date:"d-M-Y"}}</time></div>
 </article>     
-<h2>The Post </h2>
+<h2>{{post.title|title}}</h2>
 </section>    
 <main>
-    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Adipisci magnam praesentium dolorem quia velit quae, ex tenetur, omnis iusto numquam voluptatibus aliquid architecto illo ipsum cum sunt totam unde! Porro!
-    </p>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam ea error reprehenderit aspernatur ex molestias quasi, pariatur nobis earum obcaecati necessitatibus ratione quos rerum architecto asperiores atque molestiae, soluta minima?
-    </p>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nemo sequi iure, recusandae modi repudiandae iusto! Maxime obcaecati ducimus animi nesciunt cumque quasi, delectus at eum officia eius iusto officiis sequi!
-    </p>
+<p>{{post.content |linebreaks |add:'<br><hr>'}}</p> 
 </main>
 {% endblock  %}

@@ -16,10 +16,9 @@ All Posts
 <section id="all-posts">
     <h2>All my posts</h2>
 <ul>
+{% for post in all_posts  %}
     {% include "blog/includes/post.html" %}
-    {% include "blog/includes/post.html" %}
-    {% include "blog/includes/post.html" %}
-    {% include "blog/includes/post.html" %}
+{% endfor %}
 </ul>
 </section >
 {% endblock content %}
