@@ -1,6 +1,7 @@
+from django.http import Http404, HttpResponseNotFound
 from django.shortcuts import render
 from  datetime import date
-
+from django.template.loader import render_to_string
 all_posts = [
    {
         "slug": "hike-in-the-mountains",
@@ -80,3 +81,7 @@ def posts_page(request):
 def post_detail(request , slug):
     specific_post = next(post for post in all_posts if slug ==post["slug"])
     return render(request , 'blog/post_detail.html' ,{'post':specific_post})
+def not_found(request , string):
+    response  = render_to_string( '404.html')
+    # raise Http404
+    return HttpResponseNotFound(response)
