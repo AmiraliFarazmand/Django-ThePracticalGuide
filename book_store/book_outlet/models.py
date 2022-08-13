@@ -9,11 +9,11 @@ class Book(models.Model):
     rate = models.IntegerField(default=0)
     author = models.TextField(null=True , blank=True)
     top_selling  = models.BooleanField(default=False )
-    slug = models.SlugField(default="" , null=False)
+    slug = models.SlugField(default="" , null=False  , blank=True )
 
-    def save(self, *args, **kwargs):
-        self.slug = slugify(self.title)
-        super().save(*args, **kwargs)
+    # def save(self, *args, **kwargs):
+    #     self.slug = slugify(self.title)
+    #     super().save(*args, **kwargs)
         
     def get_detailed(self):
         return reverse("book_detail", args=[self.slug])
