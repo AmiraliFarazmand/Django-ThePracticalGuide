@@ -2,5 +2,11 @@
 
 {% block title %}Index Page{% endblock  %}
 {% block content %}
-Books...........
+<ul>
+    {% for book in books %}
+        <li>
+        title: {{book.title}} | rate: {{book.rate}}
+        </li>
+    {% endfor %}
+</ul>
 {% endblock content %}
