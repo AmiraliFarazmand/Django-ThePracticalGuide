@@ -1,12 +1,18 @@
 from django.shortcuts import render
 from .models import Book
 from django.http import Http404
+from django.db.models import Avg , Max
 # Create your views here.
 
 
 def index(request):
-    all_books = Book.objects.all()
-    return render(request, "book_outlet/index.html" , { "books": all_books })
+    all_books = Book.objects.all().order_by("-rate") 
+    count = all_books.count()
+    avg_rate = all_books.aggregate(Avg("rate"))
+    return render(request, "book_outlet/index.html" , { "books": all_books ,
+                                                        "count" :count,
+                                                        "avg_rate" :avg_rate,
+                                                        })
 
 def book_detail(request , slug ):
     try:
