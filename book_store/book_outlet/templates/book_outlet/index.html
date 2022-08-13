@@ -5,7 +5,8 @@
 <ul>
     {% for book in books %}
         <li>
-        title: {{book.title}} | rate: {{book.rate}}
+            {% comment %} <h3><a href= {% url 'book_detail' book.id%}>title: {{book.title}}</a> | rate: {{book.rate}} |{{book.id}}</h3> {% endcomment %}
+            <h3><a href={{book.get_detailed}}>title: {{book.title}}</a> | rate: {{book.rate}} |{{book.id}}</h3>
         </li>
     {% endfor %}
 </ul>
