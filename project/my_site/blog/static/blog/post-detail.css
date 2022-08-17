@@ -22,6 +22,7 @@ body {
   #summary h2 {
     color: white;
     font-size: 4.5rem;
+    margin-bottom: 0.25rem;
   }
   
   #summary article {
@@ -51,6 +52,10 @@ body {
     font-weight: bold;
   } 
   
+  #summary a{
+    color: white;
+    text-decoration: none;
+  }
   main {
     width: 90%;
     max-width: 90rem;
@@ -60,6 +65,12 @@ body {
     border-radius: 12px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
   }
+.tag{
+  color: rgb(145, 27, 145);
+  background-color: white;
+  padding: 0.4rem;
+  border-radius: 10px;
+}
 /* p{
     font: italic;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
