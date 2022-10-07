@@ -4,6 +4,7 @@ from django.http import HttpResponseRedirect
 from django.views import View 
 from django.views.generic  import TemplateView
 from django.views.generic import ListView , DetailView
+from django.views.generic.edit import FormView , CreateView
 
 from .forms import ReviewForm 
 from .models import Review
@@ -31,21 +32,38 @@ from .models import Review
 #                 {"form": form} ,
 #                 )
 # -----------------------------------------------------------------------------------------
-class ReviewView(View):
-    def post(self ,request):
-        form = ReviewForm(request.POST)
-        if form.is_valid():
-                form.save()
-                return HttpResponseRedirect("/thank-you")
-        else:
-            return render(request ,'reviews/review.html',
-                {"form": form} ,
-                )
-    def get(self,request):
-        form = ReviewForm()
-        return render(request ,'reviews/review.html',
-                {"form": form} ,
-                )
+# class ReviewView(View):
+#     def post(self ,request):
+#         form = ReviewForm(request.POST)
+#         if form.is_valid():
+#                 form.save()
+#                 return HttpResponseRedirect("/thank-you")
+#         else:
+#             return render(request ,'reviews/review.html',
+#                 {"form": form} ,
+#                 )
+#     def get(self,request):
+#         form = ReviewForm()
+#         return render(request ,'reviews/review.html',
+#                 {"form": form} ,
+#                 )
+
+# class ReviewView(FormView):
+#     template_name = "reviews/review.html"
+#     # model = Review
+#     form_class = ReviewForm
+#     success_url  = "/thank-you"
+#     def form_valid(self, form):
+#         form.save()
+#         return super().form_valid(form)
+
+class ReviewView(CreateView):
+    template_name = "reviews/review.html"
+    model = Review
+    form_class = ReviewForm
+    # fields = ["username", "email", "rating" , "review"]
+    success_url  = "/thank-you"
+    
 # ----------------------------------------------------------------------------------------
 
 # def thank_you (request ):    
