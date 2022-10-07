@@ -49,10 +49,29 @@ class ReviewView(View):
 
 # def thank_you (request ):    
 #     return render(request , "reviews/thank_you.html" )
-class thank_youView(TemplateView):
+class ThankYouView(TemplateView):
     template_name: str = "reviews/thank_you.html"
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["test"] = "it works!"
+        return context
+# ----------------------------------------------------------------------------------------
+
+class AllReviewsView(TemplateView):
+    template_name: str = "reviews/all_reviews.html"
+    all_reviews = Review.objects.all()
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["all_reviews"] = self.all_reviews 
+        return context
+# ----------------------------------------------------------------------------------------
+
+class SingleReviewsView(TemplateView):
+    template_name = "reviews/single_review.html"
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        users_id = kwargs["id"]
+        selected_review = Review.objects.get(pk = users_id)
+        context["review"] = selected_review
         return context
     
