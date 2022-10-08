@@ -3,6 +3,7 @@ from django.views import View
 from django.http import HttpResponseRedirect
 
 from .forms import ProfileForm
+from .models import UserProfileModel
 # Create your views here.
 
 def store(file):
@@ -21,7 +22,9 @@ class CreateProfileView(View):
         # store(img)
         submitted_form  =ProfileForm(request.POST, request.FILES)
         if submitted_form.is_valid():
-            store(request.FILES["profile_image"])
+            # store(request.FILES["profile_image"])
+            profile = UserProfileModel(image = request.FILES["profile_image"])
+            profile.save()
             return HttpResponseRedirect("/profiles")        
         else:
             return render(request, "profiles/create_profile.html" , {"form":submitted_form})
