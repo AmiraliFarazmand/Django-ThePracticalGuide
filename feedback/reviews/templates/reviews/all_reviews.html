@@ -1,0 +1,8 @@
+{% extends 'reviews/base.html' %}
+{% block title %}All reviews{% endblock title %}
+{% block content %}
+<h2>username (rate) :</h2>
+{% for review in all_reviews  %}
+<a href="/reviews/{{review.id}}"> <h3>{{ review.username }} ({{review.rating}})</h3> </a>
+{% endfor %}
+{% endblock %}
