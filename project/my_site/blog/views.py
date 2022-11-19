@@ -5,6 +5,7 @@ from django.template.loader import render_to_string
 
 from django.views.generic import ListView , DetailView
 
+from .forms import CommentForm
 from .models import Post
 all_posts = [
         
@@ -56,6 +57,7 @@ class PostDetailView(DetailView):
     def get_context_data(self, **kwargs):
         data =  super().get_context_data(**kwargs)
         data["post_tags"] = self.object.tag.all()
+        data["comment_form" ] = CommentForm() 
         return data
     
 def not_found(request , string):

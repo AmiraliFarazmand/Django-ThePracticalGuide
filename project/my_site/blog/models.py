@@ -33,7 +33,7 @@ class Post(models.Model):
         return f"[{self.id}]-T:{self.title}-A:{self.author}"
 
 class Comment(models.Model):
-    content = models.TextField(max_length=100 )
+    content = models.TextField(max_length=400 )
     owner_email = models.EmailField(max_length=100 ,)
     shown_name = models.CharField(max_length=20 , )
     post = models.ForeignKey(Post, on_delete=models.CASCADE , related_name="comments")

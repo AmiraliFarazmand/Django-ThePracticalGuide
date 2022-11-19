@@ -32,4 +32,11 @@ The Post
 <main>
 <p>{{post.content |linebreaks |add:'<br><hr>'}}</p> 
 </main>
+
+<div>
+    <form >
+        {{comment_form}}
+        <button>Send comment</button>
+    </form>
+</div>
 {% endblock  %}
