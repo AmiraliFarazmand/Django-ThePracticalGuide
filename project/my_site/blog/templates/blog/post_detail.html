@@ -15,6 +15,16 @@ The Post
 
 {% endblock  %}
 {% block content %}
+
+{% if comment_form.errors %}
+    <div id="alert">
+        <h2>Submitting comment was failed!</h2>
+        <h3>Fix the error and try again.</h3>
+        <a href="#comment-form">Fix it!</a>
+    </div>
+{% endif %}
+
+
 <section id="summary"> 
 <article>
     <img src="{{post.image.url}}" alt="{{post.titile}}">
@@ -33,12 +43,12 @@ The Post
 <p>{{post.content |linebreaks |add:'<br><hr>'}}</p> 
 </main>
 
-<section id= "comment-form" class="comment-form">
+<section id= "comment-form" >
     <h2>Your Comment:</h2>
     <form  action="{% url 'post_detail_page' post.slug %}" method="POST">
         {% csrf_token %}
             {% for form_field in comment_form %}
-            <div class="form-control">
+            <div class="form-control {% if form_field.errors %}invalid{% endif %}">
             {{form_field.label_tag}}
             {{form_field}}
             {{form_field.errors}}
