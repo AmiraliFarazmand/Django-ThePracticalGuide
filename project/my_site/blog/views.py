@@ -1,7 +1,9 @@
-from django.http import Http404, HttpResponseNotFound
+from django.http import Http404, HttpResponseNotFound  , HttpResponseRedirect
 from django.shortcuts import render ,get_object_or_404
 from  datetime import date
 from django.template.loader import render_to_string
+from django.views import View 
+from django.urls import reverse
 
 from django.views.generic import ListView , DetailView
 
@@ -51,15 +53,41 @@ class AllPostsView(ListView):
 #         'post':specific_post ,
 #         "post_tags":specific_post.tag.all()
 #         })
-class PostDetailView(DetailView):
-    model  = Post
-    template_name = "blog/post_detail.html"
-    def get_context_data(self, **kwargs):
-        data =  super().get_context_data(**kwargs)
-        data["post_tags"] = self.object.tag.all()
-        data["comment_form" ] = CommentForm() 
-        return data
-    
+# class PostDetailView(DetailView):
+    # model  = Post
+    # template_name = "blog/post_detail.html"
+    # def get_context_data(self, **kwargs):
+    #     data =  super().get_context_data(**kwargs)
+    #     data["post_tags"] = self.object.tag.all()
+    #     data["comment_form" ] = CommentForm() 
+    #     return data
+class PostDetailView(View):    
+    def get(self , request , slug):
+        post = Post.objects.get(slug=slug)
+        context = {
+            "post": post , 
+            "post_tags": post.tag.all() ,
+            "comment_form": CommentForm()
+        }
+        return render(request , "blog/post_detail.html", context)
+
+    def post(self, request , slug):
+        comment_form = CommentForm(request.POST)
+        post = Post.objects.get(slug=slug)
+        if comment_form.is_valid():
+            comment = comment_form.save(commit=False)
+            comment.post = post 
+            comment.save()
+            print("its working!!!")
+            return HttpResponseRedirect(reverse("post_detail_page" , args = [slug,]))
+        context = {
+            "post": post , 
+            "post_tags": post.tag.all() ,
+            "comment_form": CommentForm()
+        }
+        print('got an error!!!')
+        return render(request ,"blog/post_detail.html", context)
+        
 def not_found(request , string):
     response  = render_to_string( '404.html')
     # raise Http404
