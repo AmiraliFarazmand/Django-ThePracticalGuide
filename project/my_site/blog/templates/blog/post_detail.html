@@ -33,10 +33,18 @@ The Post
 <p>{{post.content |linebreaks |add:'<br><hr>'}}</p> 
 </main>
 
-<div>
+<section id= "comment-form" class="comment-form">
+    <h2>Your Comment:</h2>
     <form >
-        {{comment_form}}
+        {% comment %} {% csrfoo_token %} {% endcomment %}
+            {% for form_field in comment_form %}
+            <div class="form-control">
+            {{form_field.label_tag}}
+            {{form_field}}
+            {{form_field.errors}}
+            </div>
+            {% endfor %}
         <button>Send comment</button>
     </form>
-</div>
+</section>
 {% endblock  %}
