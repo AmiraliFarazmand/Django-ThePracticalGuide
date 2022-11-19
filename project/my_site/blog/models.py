@@ -28,6 +28,17 @@ class Post(models.Model):
     slug = models.SlugField(db_index=True , unique=True )  
     author = models.ForeignKey(Author ,on_delete=models.SET_NULL ,null=True  ,related_name="posts")
     tag = models.ManyToManyField(Tag)
-    
+   
     def __str__(self) -> str:
         return f"[{self.id}]-T:{self.title}-A:{self.author}"
+
+class Comment(models.Model):
+    content = models.TextField(max_length=100 )
+    owner_email = models.EmailField(max_length=100 ,)
+    shown_name = models.CharField(max_length=20 , )
+    post = models.ForeignKey(Post, on_delete=models.CASCADE , related_name="comments")
+    
+    def __str__(self) :
+        return f"{self.shown_name}:{self.content}"
+    
+# -----------------------------------------------------------------------------------------
