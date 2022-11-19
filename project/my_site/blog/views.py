@@ -83,7 +83,7 @@ class PostDetailView(View):
         context = {
             "post": post , 
             "post_tags": post.tag.all() ,
-            "comment_form": CommentForm()
+            "comment_form": comment_form
         }
         print('got an error!!!')
         return render(request ,"blog/post_detail.html", context)
