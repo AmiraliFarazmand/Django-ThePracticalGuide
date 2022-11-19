@@ -67,7 +67,8 @@ class PostDetailView(View):
         context = {
             "post": post , 
             "post_tags": post.tag.all() ,
-            "comment_form": CommentForm()
+            "comment_form": CommentForm(),
+            "comments" : post.comments.all().order_by("-id"),
         }
         return render(request , "blog/post_detail.html", context)
 
@@ -78,14 +79,16 @@ class PostDetailView(View):
             comment = comment_form.save(commit=False)
             comment.post = post 
             comment.save()
-            print("its working!!!")
+            # print("its working!!!")
             return HttpResponseRedirect(reverse("post_detail_page" , args = [slug,]))
         context = {
             "post": post , 
             "post_tags": post.tag.all() ,
-            "comment_form": comment_form
+            "comment_form": comment_form ,
+            "comments" : post.comments.all().order_by("-id"),
+            
         }
-        print('got an error!!!')
+        # print('got an error!!!')
         return render(request ,"blog/post_detail.html", context)
         
 def not_found(request , string):
