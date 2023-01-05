@@ -2,9 +2,9 @@
 {% load static %}
 
 
-{% block titile %}
+{% block page_title %}
 The Post  
-{% endblock titile %}
+{% endblock page_title %}
 
 {% block css_files %}
 <!-- <link rel="stylesheet" href="{% static 'blog/post.css' %}"/> -->
@@ -27,7 +27,7 @@ The Post
 
 <section id="summary"> 
 <article>
-    <img src="{{post.image.url}}" alt="{{post.titile}}">
+    <img src="{{post.image.url}}" alt="{{post.page_title}}">
     <address>By<a href="mailto:{{post.author.email}}"> {{post.author.first_name}} {{post.author.last_name}}</a></address>
     <div>last upated on <time>{{post.date|date:"d-M-Y"}}</time></div>
 </article>     

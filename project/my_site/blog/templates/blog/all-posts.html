@@ -1,13 +1,13 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block titile %}
+{% block page_title %}
 All Posts 
-{% endblock titile %}
+{% endblock page_title %}
 
 {% block css_files %}
 <link rel="stylesheet" href="{% static 'blog/post.css' %}"/>
-<link rel="stylesheet" href="{% static 'blog/all-post.css' %}" />
+<link rel="stylesheet" href="{% static 'blog/all-posts.css' %}" />
 {% comment %} <link rel="stylesheet" href="{% static 'blog/index.css' %}"/> {% endcomment %}
 {% comment %} <link rel="stylesheet" href="{% static 'app.css' %}" />{% endcomment %}
 
